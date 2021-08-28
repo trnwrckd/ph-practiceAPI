@@ -40,7 +40,9 @@ info.classList.add("d-none");
 const displayWeather = (data) => {
     console.log(data);
     info.classList.remove("d-none");
-    info.classList.add("d-flex", "flex-column", "align-items-center");
+    setTimeout(function () {
+        info.classList.add("d-flex", "flex-column", "align-items-center");
+    }, 1000);
     const { name, main } = data;
     const { temp, feels_like, temp_max, temp_min, humidity } = main;
     const { icon } = data.weather[0];
