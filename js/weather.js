@@ -82,11 +82,11 @@ const displayTime = (hour, minute, am) => {
     const body = document.body;
     body.style.color = "white";
     if (am) {
-        body.style.backgroundImage = "url('../assets/day.jpg')";
+        body.style.backgroundImage = `url('./assets/day.jpg')`;
         body.style.backgroundPosition = `50% 20%`;
         body.style.backgroundSize = "cover"
     } else {
-        body.style.backgroundImage = "url('../assets/night.webp')";
+        body.style.backgroundImage = `url('./assets/night.webp')`;
         body.style.backgroundSize = "auto";
     }
 }
