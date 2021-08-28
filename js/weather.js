@@ -1,5 +1,7 @@
 // api keys
-const weatherAPI = 'e223c7dde3dec87d43af81ce7524bbf1';
+const weatherAPI = config.weatherAPI;
+const timezoneAPI = config.timezoneAPI;
+
 
 // weather info div
 const info = document.getElementById("info");
@@ -48,7 +50,7 @@ const callWeatherAPI = () => {
 
 const callTimezone = (lat, lon) => {
     // const time;
-    const timezoneUrl = `http://api.timezonedb.com/v2.1/get-time-zone?key=8UQXN3I26SRW&format=json&by=position&lat=${lat}.689247&lng=${lon}`;
+    const timezoneUrl = `http://api.timezonedb.com/v2.1/get-time-zone?key=${timezoneAPI}&format=json&by=position&lat=${lat}.689247&lng=${lon}`;
     let time;
     fetch(timezoneUrl)
         .then(res => res.json())
