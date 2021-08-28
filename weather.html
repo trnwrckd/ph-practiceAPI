@@ -23,6 +23,12 @@
             <input class="form-control-sm py-1" type="text" id="city" placeholder="City">
             <button id="submit-btn" onclick="callWeatherAPI()"> Submit </button>
         </div>
+
+        <div id="error" class="text-center py-5">
+            <h2 id="error-caption">Something Went Wrong</h2>
+            <h4 class="py-2" id="error-msg"></h4>
+        </div>
+
         <div id="info" class="justify-content-center mt-5">
             <div id="weather-icon" data-weather-type></div>
             <div class="text-center pt-2">

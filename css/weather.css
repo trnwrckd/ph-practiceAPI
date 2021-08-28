@@ -43,6 +43,17 @@ body{
     left:0px;
 }
 
+#error{
+    display: none;
+
+}
+#error-caption::after{
+    content: '\1F622';
+    font-size: 2rem;
+    text-align: center;
+}
+
+
 #weather-icon{
     background-color: rgba(255, 255, 255, 0.3);
     border-radius: 50%;

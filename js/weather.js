@@ -1,20 +1,45 @@
 // api keys
 const weatherAPI = 'e223c7dde3dec87d43af81ce7524bbf1';
 
+// weather info div
+const info = document.getElementById("info");
+info.classList.remove("d-flex", "flex-column", "align-items-center");
+info.classList.add("d-none");
+
+
+const body = document.body;
+
 // calling weather API
 const callWeatherAPI = () => {
+    info.classList.add("d-none");
     const cityName = document.getElementById("city").value;
     document.getElementById("city").value = ''
-    info.style.display = "none";
+    const errorField = document.getElementById("error");
+    error.style.display = "none";
+    errorMsg = document.getElementById("error-msg");
 
     const weatherUrl = `http://api.openweathermap.org/data/2.5/weather?q=${cityName}&appid=${weatherAPI}&units=metric `;
     fetch(weatherUrl)
         .then(res => res.json())
         .then(data => {
-            const lat = parseInt(data.coord.lat);
-            const lon = parseInt(data.coord.lon);
-            callTimezone(lat, lon);
-            displayWeather(data);
+            let code = data.cod;
+            code = parseInt(code);
+            if (code != 200) {
+                body.style.backgroundImage = `url('./assets/default2.png')`;
+                body.style.backgroundSize = "auto";
+                body.style.backgroundPosition = "50% 25%";
+
+                info.classList.add("d-none");
+                console.log(code);
+                errorMsg.innerText = " Are you sure it's a valid city?";
+                error.style.display = "block";
+            }
+            else {
+                const lat = parseInt(data.coord.lat);
+                const lon = parseInt(data.coord.lon);
+                callTimezone(lat, lon);
+                displayWeather(data);
+            }
         })
         .catch(error => console.log(error));
 }
@@ -33,20 +58,17 @@ const callTimezone = (lat, lon) => {
 
 
 // updating weather data
-const info = document.getElementById("info");
-info.classList.remove("d-flex", "flex-column", "align-items-center");
-info.classList.add("d-none");
 
 const displayWeather = (data) => {
     console.log(data);
-    info.classList.remove("d-none");
-    setTimeout(function () {
-        info.classList.add("d-flex", "flex-column", "align-items-center");
-    }, 1000);
     const { name, main } = data;
     const { temp, feels_like, temp_max, temp_min, humidity } = main;
     const { icon } = data.weather[0];
     const weatherDesc = data.weather[0].main;
+    setTimeout(function () {
+        info.classList.remove("d-none");
+        info.classList.add("d-flex", "flex-column", "align-items-center");
+    }, 1000);
 
 
     document.getElementById("weather-icon").innerHTML =
@@ -75,12 +97,10 @@ const formatTime = (time) => {
 
 // display Time
 const displayTime = (hour, minute, am) => {
+    body.style.color = "white"
     document.getElementById("hour").innerText = `${hour}:`;
     document.getElementById("minute").innerText = `${minute} `;
     document.getElementById("am").innerText = (am) ? 'AM' : 'PM';
-
-    const body = document.body;
-    body.style.color = "white";
     if (am) {
         body.style.backgroundImage = `url('./assets/day.jpg')`;
         body.style.backgroundPosition = `50% 20%`;
