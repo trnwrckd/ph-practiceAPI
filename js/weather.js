@@ -30,11 +30,13 @@ const callWeatherAPI = () => {
                 body.style.backgroundImage = `url('./assets/default2.png')`;
                 body.style.backgroundSize = "auto";
                 body.style.backgroundPosition = "50% 25%";
+                body.style.color = "black";
 
                 info.classList.add("d-none");
                 console.log(code);
                 errorMsg.innerText = " Are you sure it's a valid city?";
                 error.style.display = "block";
+
             }
             else {
                 const lat = parseInt(data.coord.lat);
@@ -105,11 +107,8 @@ const displayTime = (hour, minute, am) => {
     document.getElementById("am").innerText = (am) ? 'AM' : 'PM';
     if (am) {
         body.style.backgroundImage = `url('./assets/day.jpg')`;
-        body.style.backgroundPosition = `50% 20%`;
-        body.style.backgroundSize = "cover"
     } else {
         body.style.backgroundImage = `url('./assets/night.webp')`;
-        body.style.backgroundSize = "auto";
     }
 }
 
