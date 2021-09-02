@@ -52,7 +52,7 @@ const callWeatherAPI = () => {
 
 const callTimezone = (lat, lon) => {
     // const time;
-    const timezoneUrl = `http://api.timezonedb.com/v2.1/get-time-zone?key=${timezoneAPI}&format=json&by=position&lat=${lat}.689247&lng=${lon}`;
+    const timezoneUrl = `https://api.timezonedb.com/v2.1/get-time-zone?key=${timezoneAPI}&format=json&by=position&lat=${lat}.689247&lng=${lon}`;
     let time;
     fetch(timezoneUrl)
         .then(res => res.json())
