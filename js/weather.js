@@ -7,8 +7,7 @@ const timezoneAPI = config.timezoneAPI;
 const info = document.getElementById("info");
 info.classList.remove("d-flex", "flex-column", "align-items-center");
 info.classList.add("d-none");
-
-
+const spinner = document.getElementById("spinner-parent");
 const body = document.body;
 
 // calling weather API
@@ -20,7 +19,7 @@ const callWeatherAPI = () => {
     error.style.display = "none";
     errorMsg = document.getElementById("error-msg");
 
-    const weatherUrl = `http://api.openweathermap.org/data/2.5/weather?q=${cityName}&appid=${weatherAPI}&units=metric `;
+    const weatherUrl = `https://api.openweathermap.org/data/2.5/weather?q=${cityName}&appid=${weatherAPI}&units=metric `;
     fetch(weatherUrl)
         .then(res => res.json())
         .then(data => {
@@ -39,6 +38,7 @@ const callWeatherAPI = () => {
 
             }
             else {
+                spinner.style.display = "block";
                 const lat = parseInt(data.coord.lat);
                 const lon = parseInt(data.coord.lon);
                 callTimezone(lat, lon);
@@ -70,6 +70,7 @@ const displayWeather = (data) => {
     const { icon } = data.weather[0];
     const weatherDesc = data.weather[0].main;
     setTimeout(function () {
+        spinner.style.display = "none";
         info.classList.remove("d-none");
         info.classList.add("d-flex", "flex-column", "align-items-center");
     }, 1000);

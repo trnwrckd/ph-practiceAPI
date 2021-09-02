@@ -24,11 +24,22 @@
             <button id="submit-btn" onclick="callWeatherAPI()"> Submit </button>
         </div>
 
+        <!-- error message -->
         <div id="error" class="text-center my-5 py-4">
             <h2 id="error-caption">Something Went Wrong</h2>
             <h4 class="py-2" id="error-msg"></h4>
         </div>
 
+        <!-- spinner -->
+        <div id="spinner-parent" class="my-5">
+            <div class="d-flex justify-content-center ">
+                <div id="spinner" class="spinner-border text-danger" role="status">
+                    <span class="visually-hidden">Loading...</span>
+                </div>
+            </div>
+        </div>
+
+        <!-- results -->
         <div id="info" class="justify-content-center mt-5">
             <div id="weather-icon" data-weather-type></div>
             <div class="text-center pt-2">
